@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+
+  - name: sqlserver_source # name of the source 
+    schema: SQL_SERVER_DBO # this is the schema our raw data lives in
+    database: ALUMNO4_DEV_BRONZE_DB # this is the name of our database
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+
+    tables:
+
+      - name: budget
+        loaded_at_field: _fivetran_synced
+        columns:
+          - name: ADDRESS_ID
+          - name: ZIPCODE
+          - name: COUNTRY
+          - name: ADDRESS
+          - name: STATE
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
