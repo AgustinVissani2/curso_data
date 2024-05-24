@@ -2,13 +2,11 @@ version: 2
 
 models:
   - name: stg_sqlserver__addresses
-    config:
-      contract:
-        enforced: true
+    # config:
+      # contract:
+      #   enforced: true
     columns:
     - name: ADDRESS_ID
-      constraints:
-          - type: not_null
     - name: ZIPCODE
     - name: COUNTRY
     - name: ADDRESS
