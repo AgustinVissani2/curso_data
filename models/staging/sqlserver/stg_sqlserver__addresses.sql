@@ -1,7 +1,7 @@
 {{ config(materialized="view") }}
 
 with
-    src_sqlserver as (select * from {{ source("sqlserver_source", "addresses") }}),
+    src_sqlserver as (select * from {{ source("_sqlserver_sources", "addresses") }}),
 
     renamed_casted as (
         select
