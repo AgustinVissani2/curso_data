@@ -10,6 +10,8 @@ models:
     - name: product_id
       constraints:
           - type: not_null
+      description: >
+        id auto
     - name: quantity
     - name: month
     - name: _fivetran_synced
