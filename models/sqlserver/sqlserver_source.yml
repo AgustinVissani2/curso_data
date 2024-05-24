@@ -1,8 +1,7 @@
 version: 2
 
 sources:
-
-  - name: sqlserver_source # name of the source 
+  - name: sqlserver_source # name of the source
     schema: SQL_SERVER_DBO # this is the schema our raw data lives in
     database: ALUMNO4_DEV_BRONZE_DB # this is the name of our database
 
@@ -12,12 +11,11 @@ sources:
       identifier: false
 
     freshness:
-      warn_after: {count: 24, period: hour}
-      error_after: {count: 48, period: hour}
+      warn_after: { count: 24, period: hour }
+      error_after: { count: 48, period: hour }
 
     tables:
-
-      - name: budget
+      - name: addresses
         loaded_at_field: _fivetran_synced
         columns:
           - name: ADDRESS_ID
