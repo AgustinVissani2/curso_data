@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: sqlserver_source # name of the source
+  - name: _sqlserver_sources # name of the source
     schema: SQL_SERVER_DBO # this is the schema our raw data lives in
     database: ALUMNO4_DEV_BRONZE_DB # this is the name of our database
 
