@@ -8,6 +8,8 @@ models:
     columns:
     - name: _row
     - name: product_id
+      constraints:
+          - type: not_null
     - name: quantity
     - name: month
     - name: _fivetran_synced
