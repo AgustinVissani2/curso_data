@@ -64,3 +64,12 @@ sources:
           - name: STATUS
           - name: _FIVETRAN_DELETED
           - name: _FIVETRAN_SYNCED
+      - name: promos
+        loaded_at_field: _FIVETRAN_SYNCED
+        columns:
+          - name: PROMO_ID
+          - name: DISCOUNT
+          - name: STATUS
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
+
