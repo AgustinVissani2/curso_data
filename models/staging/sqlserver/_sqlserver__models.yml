@@ -320,4 +320,54 @@ models:
         description: >
           The timestamp when the data was synchronized by Fivetran, converted to UTC.
           
-
+# USERS
+  - name: stg_sqlserver__users
+    description: "Silver layer transformation of the users table"
+    columns:
+      - name: USER_ID
+        description: >
+          Unique identifier for the user
+        data_type: varchar
+        tests:
+          - unique
+          - not_null
+      - name: UPDATED_AT
+        description: >
+            Timestamp of the last update
+        data_type: timestamp with time zone
+      - name: ADDRESS_ID
+        description: >
+          Unique identifier for the address
+        data_type: varchar
+      - name: LAST_NAME
+        description: >
+          Last name of the user
+        data_type: varchar
+      - name: CREATED_AT
+        description: >
+          Timestamp of the creation of the record
+        data_type: timestamp with time zone
+      - name: PHONE_NUMBER
+        description: >
+          Phone number of the user
+        data_type: varchar
+      - name: TOTAL_ORDERS
+        description: >
+          Total number of orders placed by the user
+        data_type: numeric
+      - name: FIRST_NAME
+        description: >
+          First name of the user
+        data_type: varchar
+      - name: EMAIL
+        description: >
+          Email address of the user
+        data_type: varchar
+      - name: _FIVETRAN_DELETED
+        description: >
+          Flag indicating if the record was deleted in Fivetran
+        data_type: boolean
+      - name: _FIVETRAN_SYNCED
+        description: >
+          Timestamp of the last sync by Fivetran
+        data_type: timestamp with time zone

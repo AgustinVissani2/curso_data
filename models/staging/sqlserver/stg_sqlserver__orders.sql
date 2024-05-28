@@ -18,6 +18,7 @@ with
             _fivetran_deleted as _fivetran_deleted,  
             _fivetran_synced as _fivetran_synced  
         from source
+        where _fivetran_deleted is null 
     )
 
 select *
