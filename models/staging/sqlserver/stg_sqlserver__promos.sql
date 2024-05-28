@@ -9,8 +9,9 @@ with
             discount as discount_euro,
             iff(status = 'inactive', 0, 1) as status_id,
             status,
-            _fivetran_deleted as date_deleted,
-            convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
+            _fivetran_deleted as _fivetran_deleted,
+            _fivetran_synced,
+            convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc  
         from source
         union all
         select
@@ -19,8 +20,9 @@ with
             0 as discount_euro,
             0 as status_id,
             'inactive' as status,
-            null as date_deleted,
-            null as _fivetran_synced_utc
+            null as _fivetran_deleted,
+            null as _fivetran_synced_utc,
+            null as _fivetran_synced  
     )
 
 select *

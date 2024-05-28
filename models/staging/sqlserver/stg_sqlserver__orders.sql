@@ -7,8 +7,7 @@ with
             shipping_cost,
             address_id,
             created_at,
-            md5(promo_id) as promo_id,
-            iff(promo_id = '', 'Stranger', promo_id ) as promo_id,
+            iff(promo_id = '', 'Stranger', md5(promo_id)) as promo_id, 
             estimated_delivery_at,
             order_cost,
             user_id,
@@ -16,8 +15,8 @@ with
             delivered_at,
             tracking_id as tracking_id,
             status,
-            _fivetran_deleted  as date_deleted,
-            _fivetran_synced as date_load
+            _fivetran_deleted as _fivetran_deleted,  
+            _fivetran_synced as _fivetran_synced  
         from source
     )
 
