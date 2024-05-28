@@ -46,3 +46,21 @@ sources:
           - name: QUANTITY
           - name: _FIVETRAN_DELETED
           - name: _FIVETRAN_SYNCED
+      - name: orders
+        loaded_at_field: _FIVETRAN_SYNCED
+        columns:
+          - name: ORDER_ID
+          - name: SHIPPING_SERVICE
+          - name: SHIPPING_COST
+          - name: ADDRESS_ID
+          - name: CREATED_AT
+          - name: PROMO_ID
+          - name: ESTIMATED_DELIVERY_AT
+          - name: ORDER_COST
+          - name: USER_ID
+          - name: ORDER_TOTAL
+          - name: DELIVERED_AT
+          - name: TRACKING_ID
+          - name: STATUS
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
