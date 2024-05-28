@@ -315,4 +315,9 @@ models:
         data_type: timestamp_tz
         description: >
           The timestamp when the data was synchronized by Fivetran.
+      - name: _FIVETRAN_SYNCED_UTC
+        data_type: timestamp_tz
+        description: >
+          The timestamp when the data was synchronized by Fivetran, converted to UTC.
+          
 
