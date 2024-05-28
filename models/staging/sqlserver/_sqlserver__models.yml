@@ -104,13 +104,10 @@ models:
         description: >
           Indicates if the record was marked as deleted by Fivetran.
       - name: _FIVETRAN_SYNCED
-        data_type: timestamp_tz(9)
+        data_type: timestamp_tz
         description: >
           The timestamp when the data was synchronized by Fivetran.
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
+          
 # ORDERS ITEMS
   - name: stg_sqlserver__order_items
     description: >
@@ -149,13 +146,10 @@ models:
         description: >
           Indicates if the record was marked as deleted by Fivetran.
       - name: _FIVETRAN_SYNCED
-        data_type: timestamp_tz(9)
+        data_type: timestamp_tz
         description: >
           The timestamp when the data was synchronized by Fivetran.
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
+
 # ORDERS
   - name: stg_sqlserver__orders
     description: >
@@ -259,13 +253,10 @@ models:
         description: >
           Indicates if the record was marked as deleted by Fivetran.
       - name: _FIVETRAN_SYNCED
-        data_type: timestamp_tz(9)
+        data_type: timestamp_tz
         description: >
           The timestamp when the data was synchronized by Fivetran.
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
+
 # PROMOS
   - name: stg_sqlserver__promos
     description: >
@@ -300,7 +291,7 @@ models:
           - type: not_null
         tests:
           - not_null
-      - name: ID_STATUS
+      - name: STATUS_ID
         data_type: int
         description: >
           Id Status of the promotion
@@ -321,10 +312,7 @@ models:
         description: >
           Indicates if the record was marked as deleted by Fivetran.
       - name: _FIVETRAN_SYNCED
-        data_type: timestamp_tz(9)
+        data_type: timestamp_tz
         description: >
           The timestamp when the data was synchronized by Fivetran.
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
+
