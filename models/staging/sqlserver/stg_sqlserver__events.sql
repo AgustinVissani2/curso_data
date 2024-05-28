@@ -1,6 +1,5 @@
-{{ config(materialized="view") }}
-
 with
+    source as (select * from {{  source("_sqlserver_sources", "events") }}),
     src_sqlserver as (
         select
             event_id,
@@ -11,9 +10,9 @@ with
             session_id,
             created_at,
             order_id,
-            coalesce(_fivetran_deleted, false) as _fivetran_deleted,
-            coalesce(_fivetran_synced, null) as _fivetran_synced
-        from {{ source("_sqlserver_sources", "events") }}
+            _fivetran_deleted  as date_deleted,
+            _fivetran_synced as date_load
+        from source
     )
 
 select *
