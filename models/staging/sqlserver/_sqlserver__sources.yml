@@ -38,3 +38,11 @@ sources:
           - name: ORDER_ID
           - name: _FIVETRAN_DELETED
           - name: _FIVETRAN_SYNCED
+      - name: order_items
+        loaded_at_field: _FIVETRAN_SYNCED
+        columns:
+          - name: ORDER_ID
+          - name: PRODUCT_ID
+          - name: QUANTITY
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
