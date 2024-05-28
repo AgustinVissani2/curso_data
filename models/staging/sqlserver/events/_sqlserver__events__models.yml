@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: stg_sqlserver__events
+    description: >
+      This model represents the staging table for events data imported from SQL Server.
+      It includes details on event type, user, product, session, and related metadata.
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: EVENT_ID
+        data_type: text
+        description: >
+          Unique identifier for each event.
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+          - unique
+      - name: PAGE_URL
+        data_type: text
+        description: >
+          URL of the page where the event occurred.
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: EVENT_TYPE
+        data_type: text
+        description: >
+          Type of the event (e.g., checkout, view).
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: USER_ID
+        data_type: text
+        description: >
+          Identifier of the user who triggered the event.
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: PRODUCT_ID
+        data_type: text
+        description: >
+          Identifier of the product related to the event.
+      - name: SESSION_ID
+        data_type: text
+        description: >
+          Identifier of the session in which the event occurred.
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: CREATED_AT
+        data_type: timestamp
+        description: >
+          Timestamp when the event was created.
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: ORDER_ID
+        data_type: text
+        description: >
+          Identifier of the order related to the event.
+      - name: _FIVETRAN_DELETED
+        data_type: boolean
+        description: >
+          Indicates if the record was marked as deleted by Fivetran.
+      - name: _FIVETRAN_SYNCED
+        data_type: timestamp_tz(9)
+        description: >
+          The timestamp when the data was synchronized by Fivetran.
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
