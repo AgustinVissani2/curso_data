@@ -3,22 +3,22 @@
 with
     src_sqlserver as (
         select
-            ORDER_ID,
-            SHIPPING_SERVICE,
-            SHIPPING_COST,
-            ADDRESS_ID,
-            CREATED_AT,
-            COALESCE(PROMO_ID, 'No value') as PROMO_ID,
-            COALESCE(ESTIMATED_DELIVERY_AT, null) as ESTIMATED_DELIVERY_AT,
-            ORDER_COST,
-            USER_ID,
-            ORDER_TOTAL,
-            DELIVERED_AT,
-            TRACKING_ID,
-            STATUS,
-            COALESCE(_FIVETRAN_DELETED, false) as _FIVETRAN_DELETED,
-            COALESCE(_FIVETRAN_SYNCED, null) as _FIVETRAN_SYNCED
-        from {{ source('_sqlserver_sources', 'orders') }}
+            order_id,
+            shipping_service,
+            shipping_cost,
+            address_id,
+            created_at,
+            coalesce(promo_id, 'No value') as promo_id,
+            coalesce(estimated_delivery_at, null) as estimated_delivery_at,
+            order_cost,
+            user_id,
+            order_total,
+            delivered_at,
+            tracking_id,
+            status,
+            coalesce(_fivetran_deleted, false) as _fivetran_deleted,
+            coalesce(_fivetran_synced, null) as _fivetran_synced
+        from {{ source("_sqlserver_sources", "orders") }}
     )
 
 select *
