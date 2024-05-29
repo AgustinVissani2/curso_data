@@ -3,20 +3,32 @@ with
     src_sqlserver as (
         select
             order_id,
-            shipping_service,
-            shipping_cost,
+            case
+                when shipping_service is null or shipping_service = '' or shipping_service = 'No value' then 'unknown'
+                else shipping_service
+            end as shipping_service_name,
+            shipping_cost as shipping_cost_amount_euro,
             address_id,
             created_at,
-            iff(promo_id = '', 'Stranger', md5(promo_id)) as promo_id, 
+            case
+                when promo_id is null or promo_id = '' then 'Unknown'
+                else md5(promo_id)
+            end as promo_id,
             estimated_delivery_at,
-            order_cost,
+            order_cost as order_cost_euro,
             user_id,
-            order_total,
+            order_total as order_total_euro,
             delivered_at,
-            tracking_id as tracking_id,
-            status,
-            _fivetran_deleted as _fivetran_deleted,  
-            _fivetran_synced as _fivetran_synced  
+            tracking_id ,
+            case
+                when status = 'delivered' then 0
+                when status = 'shipped' then 1
+                when status = 'preparing' then 2
+                else null
+            end as status_id,
+            status as status_name,
+            _fivetran_deleted,  
+            convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
         where _fivetran_deleted is null 
     )
