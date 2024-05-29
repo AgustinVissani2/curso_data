@@ -86,3 +86,12 @@ sources:
           - name: EMAIL
           - name: _FIVETRAN_DELETED
           - name: _FIVETRAN_SYNCED
+      - name: products
+        loaded_at_field: _FIVETRAN_SYNCED
+        columns:
+          - name: PRODUCT_ID
+          - name: PRICE
+          - name: NAME
+          - name: INVENTORY
+          - name: _FIVETRAN_DELETED
+          - name: _FIVETRAN_SYNCED
