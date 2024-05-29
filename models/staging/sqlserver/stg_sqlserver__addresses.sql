@@ -8,7 +8,7 @@ with
             address,
             state,
             _fivetran_deleted as _fivetran_deleted,  
-            _fivetran_synced as _fivetran_synced  
+            convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
     )
 
