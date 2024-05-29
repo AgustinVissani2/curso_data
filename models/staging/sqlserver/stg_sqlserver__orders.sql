@@ -13,15 +13,15 @@ with
             end as shipping_service_name,
             shipping_cost as shipping_cost_amount_euro,
             address_id,
-            created_at,
+            convert_timezone('UTC', created_at) as created_at,
             case
                 when promo_id is null or promo_id = '' then 'Unknown' else md5(promo_id)
             end as promo_id,
-            estimated_delivery_at,
+            convert_timezone('UTC', estimated_delivery_at) as estimated_delivery_at,
             order_cost as order_cost_euro,
             user_id,
             order_total as order_total_euro,
-            delivered_at,
+            convert_timezone('UTC', delivered_at) as delivered_at,
             tracking_id,
             status as status_name,
             case
@@ -41,3 +41,5 @@ with
 
 select *
 from src_sqlserver
+
+positive_values(orders, order_total)
