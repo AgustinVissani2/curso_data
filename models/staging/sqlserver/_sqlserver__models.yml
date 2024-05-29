@@ -344,6 +344,10 @@ models:
         description: >
           Phone number of the user
         data_type: varchar
+      - name: IS_VALID_PHONE_NUMBER
+        description: >
+          Check if the phone number is correct.
+        data_type: boolean
       - name: TOTAL_ORDERS
         description: >
           Total number of orders placed by the user
@@ -356,6 +360,10 @@ models:
         description: >
           Email address of the user
         data_type: varchar
+      - name: IS_VALID_EMAIL_ADDRESS
+        description: >
+          Check if the email is correct.
+        data_type: boolean
       - name: _FIVETRAN_DELETED
         description: >
           Flag indicating if the record was deleted in Fivetran

@@ -3,15 +3,24 @@ with
     src_sqlserver as (
         select
             user_id,
-            updated_at,
-            address_id,
-            last_name,
-            created_at,
-            phone_number,
-            total_orders,
             first_name,
+            last_name,
+            address_id,
+            phone_number,
+            coalesce(
+                regexp_like(phone_number, '^[0-9]{3}-[0-9]{3}-[0-9]{4}$') = true,
+                false
+            ) as is_valid_phone_number,
             email,
-            _fivetran_deleted = 'true' as _fivetran_deleted,
+            coalesce(
+                regexp_like(email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$')
+                = true,
+                false
+            ) as is_valid_email_address,
+            total_orders,
+            created_at,
+            updated_at,
+            _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
         where _fivetran_deleted is null
