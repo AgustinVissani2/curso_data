@@ -12,7 +12,6 @@ with
             first_name,
             email,
             _fivetran_deleted = 'true' as _fivetran_deleted,
-            _fivetran_synced,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
         where _fivetran_deleted is null
