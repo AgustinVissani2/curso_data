@@ -42,4 +42,3 @@ with
 select *
 from src_sqlserver
 
-positive_values(orders, order_total)

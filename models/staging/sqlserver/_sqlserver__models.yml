@@ -399,6 +399,42 @@ models:
         data_type: timestamp_tz
         description: >
           The timestamp when Fivetran synchronized the data in UTC time zone.
+          
+  - name: user_with_address
+    description: "Table of users with addresses"
+    columns:
+    - name: user_id
+      description: "User ID"
+      tests:
+        - unique
+        - not_null
+    - name: first_name
+      description: "User's first name"
+    - name: last_name
+      description: "User's last name"
+    - name: phone_number
+      description: "User's phone number"
+    - name: is_valid_phone_number
+      description: "Indicator of whether the phone number is valid"
+    - name: email
+      description: "User's email"
+    - name: is_valid_email_address
+      description: "Indicator of whether the email address is valid"
+    - name: total_orders
+      description: "Total number of orders by the user"
+    - name: created_at
+      description: "User's creation date"
+    - name: updated_at
+      description: "User's last update date"
+    - name: address
+      description: "User's address"
+    - name: zipcode
+      description: "User's zip code"
+    - name: country
+      description: "User's country"
+    - name: state
+      description: "User's state"
+
 
   #dim_time
   - name: dim_time
@@ -414,3 +450,4 @@ models:
       - name: quarter
     config:
       materialized: table
+  
