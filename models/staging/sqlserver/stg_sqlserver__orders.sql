@@ -33,7 +33,6 @@ with
                 then 2
                 else null
             end as status_id,
-            _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
         where _fivetran_deleted is null
