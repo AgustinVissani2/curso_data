@@ -171,7 +171,7 @@ models:
     - name: SHIPPING_SERVICE_NAME
       data_type: text
       description: >
-        Name of the shipping service used for the order.
+        Cost of shipping the order in Euro.
     - name: SHIPPING_COST_AMOUNT_EURO
       data_type: float
       description: >
@@ -233,14 +233,10 @@ models:
       data_type: text
       description: >
         Tracking identifier for the order shipment.
-    - name: STATUS_ID
-      data_type: int
-      description: >
-        Identifier of the status.
-    - name: STATUS_NAME
+    - name: STATUS
       data_type: text
       description: >
-        Name of the status.
+        Identifier of the status.
     - name: USER_ID
       data_type: text
       description: >

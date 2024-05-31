@@ -10,9 +10,9 @@ with
             session_id,
             created_at,
             order_id,
-            _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
+        where _fivetran_deleted is null
     )
 
 select *
