@@ -141,6 +141,7 @@ models:
           - type: not_null
         tests:
           - not_null
+          - positive_values
       - name: _FIVETRAN_DELETED
         data_type: boolean
         description: >
@@ -150,7 +151,7 @@ models:
         description: >
           The timestamp when Fivetran synchronized the data in UTC time zone.
 
-# ORDERS
+  # ORDERS
   - name: stg_sqlserver__orders
     description: >
       This model represents the staging table for orders data imported from SQL Server.
@@ -168,10 +169,10 @@ models:
       tests:
         - not_null
         - unique
-    - name: SHIPPING_SERVICE_NAME
+    - name: SHIPPING_SERVICE_ID
       data_type: text
       description: >
-        Cost of shipping the order in Euro.
+         Shipping service id.
     - name: SHIPPING_COST_AMOUNT_EURO
       data_type: float
       description: >
@@ -233,7 +234,7 @@ models:
       data_type: text
       description: >
         Tracking identifier for the order shipment.
-    - name: STATUS
+    - name: STATUS_ID
       data_type: text
       description: >
         Identifier of the status.
@@ -284,16 +285,8 @@ models:
           - type: not_null
         tests:
           - not_null
-      - name: STATUS_ID
+      - name: STATUS
         data_type: int
-        description: >
-          Id Status of the promotion
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
-      - name: STATUS_NAME
-        data_type: text
         description: >
           Status of the promotion (e.g., active, inactive).
         constraints:
@@ -368,7 +361,8 @@ models:
         data_type: timestamp_tz
         description: >
           The timestamp when Fivetran synchronized the data in UTC time zone.
-  #PRODUCT
+  
+  #PRODUCTS
   - name: stg_sqlserver__product
     description: "Model for the product table"
     columns:
@@ -395,42 +389,6 @@ models:
         data_type: timestamp_tz
         description: >
           The timestamp when Fivetran synchronized the data in UTC time zone.
-          
-  - name: user_with_address
-    description: "Table of users with addresses"
-    columns:
-    - name: user_id
-      description: "User ID"
-      tests:
-        - unique
-        - not_null
-    - name: first_name
-      description: "User's first name"
-    - name: last_name
-      description: "User's last name"
-    - name: phone_number
-      description: "User's phone number"
-    - name: is_valid_phone_number
-      description: "Indicator of whether the phone number is valid"
-    - name: email
-      description: "User's email"
-    - name: is_valid_email_address
-      description: "Indicator of whether the email address is valid"
-    - name: total_orders
-      description: "Total number of orders by the user"
-    - name: created_at
-      description: "User's creation date"
-    - name: updated_at
-      description: "User's last update date"
-    - name: address
-      description: "User's address"
-    - name: zipcode
-      description: "User's zip code"
-    - name: country
-      description: "User's country"
-    - name: state
-      description: "User's state"
-
 
   #dim_time
   - name: dim_time
