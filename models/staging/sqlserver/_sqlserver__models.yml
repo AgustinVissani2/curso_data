@@ -325,10 +325,6 @@ models:
         description: >
           Last name of the user
         data_type: varchar
-      - name: CREATED_AT
-        description: >
-          Timestamp of the creation of the record
-        data_type: timestamp with time zone
       - name: PHONE_NUMBER
         description: >
           Phone number of the user
@@ -349,6 +345,26 @@ models:
         description: >
           Email address of the user
         data_type: varchar
+      - name: CREATED_AT_DATE
+        data_type: timestamp_tz
+        description: "Creation date in day-month-year of a user"
+        tests:
+          - not_null
+      - name: CREATED_AT_TIME_UTC
+        data_type: timestamp_tz
+        description: "Creation date in hour-minute-second of a user"
+        tests:
+          - not_null
+      - name: UPDATED_AT_DATE
+        data_type: timestamp_tz
+        description: "Update date in day-month-year of a user"
+        tests:
+          - not_null
+      - name: UPDATED_AT_TIME_UTC
+        data_type: timestamp_tz
+        description: "Update date in hours-minutes-seconds of a user"
+        tests:
+          - not_null
       - name: IS_VALID_EMAIL_ADDRESS
         description: >
           Check if the email is correct.

@@ -3,7 +3,7 @@ src_budget as (select * from {{ source("_google_sheets__sources", "budget") }}),
 
 renamed_casted as (
     select
-        _row as budget_id,
+        {{ dbt_utils.generate_surrogate_key(['_row']) }} AS budget_id,
         product_id,
         quantity as quantity_sold_expected,
         month as "DATE",
