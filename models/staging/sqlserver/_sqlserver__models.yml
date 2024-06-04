@@ -405,19 +405,4 @@ models:
         data_type: timestamp_tz
         description: >
           The timestamp when Fivetran synchronized the data in UTC time zone.
-
-  #dim_time
-  - name: dim_time
-    description: "Dimension table representing time"
-    columns:
-      - name: date
-      - name: year
-      - name: month
-      - name: month_name
-      - name: day
-      - name: number_week_day
-      - name: week_day
-      - name: quarter
-    config:
-      materialized: table
-  
+ 
