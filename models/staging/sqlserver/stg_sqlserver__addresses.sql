@@ -3,7 +3,7 @@ source as (select * from {{ source("_sqlserver_sources", "addresses") }}),
 
 src_sqlserver as (
     select
-        {{ dbt_utils.generate_surrogate_key(['address_id'])}} AS address_id,
+        {{ dbt_utils.generate_surrogate_key(['address_id']) }} AS address_id,
         zipcode,
         country,
         address,
@@ -14,7 +14,7 @@ src_sqlserver as (
     where _fivetran_deleted is null
     union all
     select
-        md5('no-address') as address_id,
+        'no-address' as address_id,
         '0' as zipcode,
         'no-exist' as country,
         'no-exist' as address,
@@ -23,14 +23,13 @@ src_sqlserver as (
         null::timestamp as _fivetran_synced_utc
 )
 
-select *
-from src_sqlserver
+    select
+             {{ dbt_utils.generate_surrogate_key(['address_id']) }} AS address_id,
+            zipcode,
+            country,
+            address,
+            state,
+            _fivetran_deleted,
+            _fivetran_synced_utc
 
-
-
-{{
-  config(
-     materialized='view'
-    ,unique_key='address_id'
-  )
-}}
+    from src_sqlserver
