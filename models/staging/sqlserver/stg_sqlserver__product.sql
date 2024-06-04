@@ -1,17 +1,35 @@
 with
-    source as (select * from {{ source("_sqlserver_sources", "products") }}),
-
+    source as (
+        select * from {{ source("_sqlserver_sources", "products") }}
+    ),
     src_sqlserver as (
         select
             product_id,
-            price as price_euro,
             name as product_name,
+            price as price_euro,
             inventory,
             _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
         where _fivetran_deleted is null
-    )
 
-select *
-from src_sqlserver
+        union all
+
+        select
+           
+           'No products' AS product_id,
+            'No products' as product_name,
+            0 as price_euro,
+            '0' AS inventory,
+            null AS _fivetran_deleted,
+            null AS _fivetran_synced_utc
+    )
+    select   
+             {{ dbt_utils.generate_surrogate_key(['PRODUCT_ID'])}} AS product_id,
+            product_name,
+            price_euro,
+            inventory,
+            _fivetran_deleted,
+            _fivetran_synced_utc
+            
+    from src_sqlserver

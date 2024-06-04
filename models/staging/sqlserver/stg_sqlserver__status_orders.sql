@@ -3,7 +3,7 @@ source as (select * from {{ ref("base_sqlserver__orders") }}),
 
 src_sqlserver as (
     select distinct
-        md5(status) as status_id,
+        {{ dbt_utils.generate_surrogate_key(['status']) }} AS status_id,
         status
     from source
 )

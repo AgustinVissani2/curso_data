@@ -8,7 +8,7 @@ src_sqlserver as (
         shipping_cost_amount_euro,
         address_id,
         created_at,
-        md5(promo_id) as promo_id,
+        {{ dbt_utils.generate_surrogate_key(['promo_id']) }} AS promo_id,
         estimated_delivery_at,
         order_cost_euro,
         user_id,

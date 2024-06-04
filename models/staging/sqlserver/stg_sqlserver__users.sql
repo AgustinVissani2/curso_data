@@ -8,7 +8,7 @@ src_sqlserver AS (
         user_id,
         first_name,
         last_name,
-        {{ dbt_utils.generate_surrogate_key(['address_id'])}} AS address_id,
+        address_id,
         phone_number,
         email,
         total_orders,

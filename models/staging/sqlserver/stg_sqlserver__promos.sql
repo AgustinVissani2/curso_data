@@ -3,10 +3,10 @@ with
 
     src_sqlserver as (
         select
-            md5(promo_name) as promo_id,
+            {{ dbt_utils.generate_surrogate_key(['promo_name']) }} AS promo_id,
             promo_name,
             discount_euro,
-            iff(status = 'inactive', 0, 1) as status,
+            status_id,
             _fivetran_deleted,
             _fivetran_synced_utc
         from source
