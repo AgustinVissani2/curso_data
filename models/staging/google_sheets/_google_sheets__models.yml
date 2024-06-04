@@ -10,7 +10,7 @@ models:
         enforced: true
     columns:
       - name: BUDGET_ID
-        data_type: int
+        data_type: text
         description: >
           The row number from the Google Sheets document.
         constraints:

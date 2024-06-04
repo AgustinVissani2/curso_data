@@ -285,7 +285,7 @@ models:
           - type: not_null
         tests:
           - not_null
-      - name: STATUS
+      - name: STATUS_ID
         data_type: int
         description: >
           Status of the promotion (e.g., active, inactive).
