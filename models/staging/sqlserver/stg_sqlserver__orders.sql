@@ -15,7 +15,7 @@ src_sqlserver as (
         user_id,
         order_total_usd,
         delivered_at,
-        tracking_id,
+        COALESCE({{ dbt_utils.generate_surrogate_key(['tracking_id'])}}, 'no-tracking') AS tracking_id,
         status,
         {{ dbt_utils.generate_surrogate_key(['status'])}} AS status_id,
         _fivetran_deleted,

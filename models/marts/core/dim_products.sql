@@ -11,7 +11,7 @@ WITH dim_product AS (
 SELECT
     product_id,
     product_name,
-    price_euro,
+    price_usd,
     inventory,
     _fivetran_synced_utc
 FROM dim_product

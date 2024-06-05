@@ -4,7 +4,7 @@
 }}
 
 WITH fct_budget AS (
-    SELECT DISTINCT *
+    SELECT  *
     FROM {{ ref('stg_google_sheets__budget') }}
 )
 

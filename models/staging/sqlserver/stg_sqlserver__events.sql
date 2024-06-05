@@ -4,12 +4,12 @@ with
         select
             event_id,
             page_url,
-            event_type,
+            event_type, -- event type dim? 
             user_id,
-            iff(product_id = '', null,  product_id) as product_id,
+            COALESCE({{ dbt_utils.generate_surrogate_key(['product_id'])}}, 'no-product') AS product_id,
             session_id,
             created_at,
-            iff(order_id = '', null,  order_id) as order_id,
+            COALESCE({{ dbt_utils.generate_surrogate_key(['order_id'])}}, 'no-order') AS order_id,
             _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source

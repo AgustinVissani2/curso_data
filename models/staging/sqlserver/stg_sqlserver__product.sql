@@ -6,7 +6,7 @@ with
         select
             product_id,
             name as product_name,
-            price as price_euro,
+            price as price_usd,
             inventory,
             _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
@@ -19,7 +19,7 @@ with
            
            'No products' AS product_id,
             'No products' as product_name,
-            0 as price_euro,
+            0 as price_usd,
             '0' AS inventory,
             null AS _fivetran_deleted,
             null AS _fivetran_synced_utc
@@ -27,7 +27,7 @@ with
     select   
              {{ dbt_utils.generate_surrogate_key(['PRODUCT_ID'])}} AS product_id,
             product_name,
-            price_euro,
+            price_usd,
             inventory,
             _fivetran_deleted,
             _fivetran_synced_utc
