@@ -1,22 +1,22 @@
-with
-    dates as (
-        select
-            cast(
-                date_trunc('day', dateadd('day', seq4(), '2023-11-11')) as date
-            ) as date_day
-        from table(generator(rowcount => 365 * 3))
-    ),
-    time_dimension as (
-        select
-            date_day,
-            extract(year from date_day) as year,
-            extract(month from date_day) as month,
-            monthname(date_day) as month_name,
-            extract(day from date_day) as day,
-            extract(dayofweek from date_day) as number_week_day,
-            dayname(date_day) as week_day,
-            extract(quarter from date_day) as quarter
-        from dates
-    )
-select *
-from time_dimension
+{{ config(
+  materialized='table'
+) }}
+
+WITH dim_time AS (
+    {{ dbt_utils.date_spine(
+    datepart="second",
+    start_date="cast('00:00:00' as time)",
+    end_date="cast('23:59:59' as time)"
+   )
+}}
+)
+
+SELECT
+    date_second AS time,
+    CASE
+        WHEN date_second < '12:00:00' THEN 'am'
+        ELSE 'pm'
+    END AS am_or_pm,
+    extract(HOUR FROM date_second) AS hour_time
+
+FROM dim_time
