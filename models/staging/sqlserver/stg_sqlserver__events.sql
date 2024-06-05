@@ -6,10 +6,10 @@ with
             page_url,
             event_type,
             user_id,
-            product_id,
+            iff(product_id = '', null,  product_id) as product_id,
             session_id,
             created_at,
-            order_id,
+            iff(order_id = '', null,  order_id) as order_id,
             _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
         from source
