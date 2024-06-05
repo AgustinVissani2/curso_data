@@ -5,14 +5,14 @@ src_sqlserver as (
     select
         order_id,
         shipping_service_name,
-        shipping_cost_amount_euro,
-        address_id,
+        shipping_cost_amount_usd,
+        {{ dbt_utils.generate_surrogate_key(['address_id'])}} AS address_id,
         created_at,
         {{ dbt_utils.generate_surrogate_key(['promo_id']) }} AS promo_id,
         estimated_delivery_at,
-        order_cost_euro,
+        order_cost_usd,
         user_id,
-        order_total_euro,
+        order_total_usd,
         delivered_at,
         tracking_id,
         status,
@@ -25,14 +25,14 @@ src_sqlserver as (
 shipping_service_normalized as (
     select distinct
         shipping_service_name,
-        md5(shipping_service_name) as shipping_service_id
+        {{ dbt_utils.generate_surrogate_key(['shipping_service_name'])}} AS shipping_service_id
     from src_sqlserver
 ),
 
 status_normalized as (
     select distinct
         status,
-        md5(status) as status_id
+        {{ dbt_utils.generate_surrogate_key(['status'])}} AS status_id
     from src_sqlserver
 ),
 
@@ -40,17 +40,19 @@ orders_normalized as (
     select
         o.order_id,
         ssn.shipping_service_id,
-        o.shipping_cost_amount_euro,
+        ssn.shipping_service_name,
+        o.shipping_cost_amount_usd,
         o.address_id,
         o.created_at,
         o.promo_id,
         o.estimated_delivery_at,
-        o.order_cost_euro,
+        o.order_cost_usd,
         o.user_id,
-        o.order_total_euro,
+        o.order_total_usd,
         o.delivered_at,
         o.tracking_id,
         sn.status_id,
+        sn.status,
         o._fivetran_deleted,
         o._fivetran_synced_utc
     from src_sqlserver o

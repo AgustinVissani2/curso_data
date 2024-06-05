@@ -173,10 +173,14 @@ models:
       data_type: text
       description: >
          Shipping service id.
-    - name: SHIPPING_COST_AMOUNT_EURO
+    - name: SHIPPING_COST_AMOUNT_USD
       data_type: float
       description: >
-        Cost of shipping the order in Euro.
+        Cost of shipping the order in USD.
+    - name: SHIPPING_SERVICE_NAME
+      data_type: text
+      description: >
+        Shipping service name.
     - name: ADDRESS_ID
       data_type: text
       description: >
@@ -201,7 +205,7 @@ models:
       data_type: timestamp_tz
       description: >
         Estimated delivery time of the order.
-    - name: ORDER_COST_EURO
+    - name: ORDER_COST_USD
       data_type: float
       description: >
         Cost of the order before shipping and promotions.
@@ -217,7 +221,7 @@ models:
         - type: not_null
       tests:
         - not_null
-    - name: ORDER_TOTAL_EURO
+    - name: ORDER_TOTAL_USD
       data_type: float
       description: >
         Total cost of the order after shipping and promotions.
@@ -238,6 +242,10 @@ models:
       data_type: text
       description: >
         Identifier of the status.
+    - name: STATUS
+      data_type: text
+      description: >
+        Name of the status.
     - name: USER_ID
       data_type: text
       description: >
@@ -277,7 +285,7 @@ models:
           - type: not_null
         tests:
           - not_null
-      - name: DISCOUNT_EURO
+      - name: DISCOUNT_USD
         data_type: int
         description: >
           Amount of discount provided by the promotion.
@@ -285,10 +293,18 @@ models:
           - type: not_null
         tests:
           - not_null
+      - name: STATUS
+        data_type: text
+        description: >
+          Status of the promotion (e.g., active, inactive).
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
       - name: STATUS_ID
         data_type: int
         description: >
-          Status of the promotion (e.g., active, inactive).
+          Status ID of the promotion (e.g., 1 active, 0 inactive).
         constraints:
           - type: not_null
         tests:
@@ -387,8 +403,8 @@ models:
         tests:
           - unique
           - not_null
-      - name: PRICE_EURO
-        description: "Price of the product in euro"
+      - name: PRICE_USD
+        description: "Price of the product in USD"
         tests:
           - positive_values
       - name: PRODUCT_NAME
