@@ -9,5 +9,11 @@ WITH stg_sqlserver__promos AS (
     FROM {{ ref('stg_sqlserver__promos') }}
 )
 
-SELECT *
+SELECT
+    promo_id,
+    promo_name,
+    discount_usd,
+    status_id,
+    status,
+    _fivetran_synced_utc
 FROM stg_sqlserver__promos
