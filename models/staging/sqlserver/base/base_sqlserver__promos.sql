@@ -6,7 +6,6 @@ with
                 when promo_id is null or promo_id = '' then 'unknown' else {{ normalize_promo_name('promo_id') }}
             end as promo_name,
             discount as discount_usd,
-            iff(status = 'inactive', 0, 1) as status_id,
             status,
             _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
