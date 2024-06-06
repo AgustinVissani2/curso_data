@@ -3,7 +3,7 @@ source as (select * from {{ source("_sqlserver_sources", "addresses") }}),
 
 src_sqlserver as (
     select
-        {{ dbt_utils.generate_surrogate_key(['address_id']) }} AS address_id,
+        address_id,
         zipcode,
         country,
         address,
@@ -24,7 +24,7 @@ src_sqlserver as (
 )
 
     select
-             {{ dbt_utils.generate_surrogate_key(['address_id']) }} AS address_id,
+            address_id,
             zipcode,
             country,
             address,

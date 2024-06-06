@@ -9,15 +9,16 @@ WITH dim_users AS (
 )
 
 SELECT
-    USER_ID,
-    FIRST_NAME,
-    ADDRESS_ID,
-    PHONE_NUMBER,
-    EMAIL,
-    TOTAL_ORDERS,
-    CREATED_AT_DATE,
-    CREATED_AT_TIME_UTC,
-    UPDATED_AT_DATE,
-    UPDATED_AT_TIME_UTC,
-    _FIVETRAN_SYNCED_UTC,
+    user_id,
+    first_name,
+    last_name,
+    address_id,
+    phone_number,
+    email,
+    total_orders,
+    created_at_date,
+    created_at_time_utc,
+    updated_at_date,
+    updated_at_time_utc,
+    _fivetran_synced_utc
 FROM dim_users
