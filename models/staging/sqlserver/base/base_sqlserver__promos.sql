@@ -15,7 +15,6 @@ with
         select
             'unknown' as promo_name,
             0 as discount_usd,
-            0 as status_id,
             'inactive' as status,
             null as _fivetran_deleted,
             null as _fivetran_synced_utc,

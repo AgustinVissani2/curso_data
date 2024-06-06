@@ -7,7 +7,7 @@
 with 
 
 
-addresses as (
+order_items as (
     select * from {{ ref('stg_sqlserver__order_items') }}
 ),
 
@@ -30,14 +30,13 @@ fct_orders as (
         o.user_id,
         o.order_total_usd,
         o.delivered_at,
-        o.tracking_id,
         o.status_id,
         u.product_id,
         u.quantity,
 
 
     from orders as o
-    left join stg_sqlserver__order_items as u on o.order_id = u.order_id
+    left join order_items as u on o.order_id = u.order_id
 
 )
 
