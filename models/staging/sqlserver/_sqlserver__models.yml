@@ -59,14 +59,18 @@ models:
           - type: not_null
         tests:
           - not_null
-      - name: EVENT_TYPE
+      - name: EVENT_TYPE_ID
         data_type: text
         description: >
-          Type of the event (e.g., checkout, view).
+          Type of the event id (e.g., checkout, view).
         constraints:
           - type: not_null
         tests:
           - not_null
+      - name: EVENT_TYPE
+        data_type: text
+        description: >
+          Type of the event name (e.g., checkout, view).
       - name: USER_ID
         data_type: text
         description: >
