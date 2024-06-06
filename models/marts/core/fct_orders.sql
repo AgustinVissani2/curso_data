@@ -1,11 +1,6 @@
-{{
-  config(
-    materialized='view'
-  )
-}}
+{{ config(materialized='view') }}
 
-with 
-
+with
 
 order_items as (
     select * from {{ ref('stg_sqlserver__order_items') }}
@@ -21,6 +16,7 @@ fct_orders as (
         o.order_id,
         o.shipping_service_id,
         o.shipping_cost_amount_usd,
+        o.shipping_cost_amount_usd / COUNT(o.order_id) over (partition by o.order_id order by o.order_id) as shipping_cost_product,
         o.address_id,
         o.tracking_id,
         o.created_at,
@@ -36,8 +32,11 @@ fct_orders as (
 
 
     from orders as o
-    left join order_items as u on o.order_id = u.order_id
+    JOIN order_items as u
+        on o.order_id = u.order_id
+    ORDER by order_id
 
 )
 
 select * from fct_orders
+

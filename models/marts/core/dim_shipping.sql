@@ -17,9 +17,5 @@ WITH shipping_services AS (
 )
 
 SELECT
-    shipping_service_id,
-    shipping_service_name,
-    total_shipping_cost_usd,
-    total_shipping_service,
-    avg_shipping_service_cost
+    *
 FROM shipping_services
