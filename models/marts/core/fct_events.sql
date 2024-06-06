@@ -17,7 +17,7 @@ renamed as (
     select
         event_id,
         page_url,
-        event_type,
+        event_type_id,
         user_id,
         product_id,
         session_id,
