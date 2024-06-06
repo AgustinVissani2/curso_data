@@ -39,20 +39,22 @@ dm_marketing as (
         a.state,
         a.country,
         count(distinct order_id) as total_num_orders,
+        sum(pr.discount_usd) as total_discount_usd,
         sum(order_total_usd) as total_orders_cost_usd,
         sum(shipping_cost_amount_usd) as total_shipping_cost_usd,
-        sum(pr.discount_usd) as total_discount_usd,
         sum(quantity) as total_quantity_products,
         count(distinct product_id) as total_different_products,
 
 
     from fct_orders as o
-    left join dim_users as u
+    join dim_users as u
         on o.user_id = u.user_id
-    left join dim_addresses as a
+    join dim_addresses as a
         on u.address_id = a.address_id
-    left join dim_promos as pr
+    join dim_promos as pr
         on o.promo_id = pr.promo_id
+
+    
     group by all
 )
 
