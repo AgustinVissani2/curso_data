@@ -25,11 +25,11 @@ with
             null AS _fivetran_synced_utc
     )
     select   
-             {{ dbt_utils.generate_surrogate_key(['PRODUCT_ID'])}} AS product_id,
-            product_name,
-            price_usd,
-            inventory,
-            _fivetran_deleted,
-            _fivetran_synced_utc
+        product_id,
+        product_name,
+        price_usd,
+        inventory,
+        _fivetran_deleted,
+        _fivetran_synced_utc
             
     from src_sqlserver
