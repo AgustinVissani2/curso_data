@@ -64,7 +64,7 @@ fc as (
     from join_order_Ordersitems_products_promo
 ),
 
-fc as (
+sc as (
     select
         ROW_NUMBER() over (partition by order_id order by order_id) as row_,
         order_id,
@@ -88,4 +88,4 @@ fc as (
     from fc
 )
 
-select * from fc
+select * from sc
