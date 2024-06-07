@@ -193,7 +193,7 @@ models:
         - type: not_null
       tests:
         - not_null
-    - name: CREATED_AT
+    - name: CREATED_AT_UTC
       data_type: timestamp_tz
       description: >
         Timestamp when the order was created.
@@ -201,11 +201,15 @@ models:
         - type: not_null
       tests:
         - not_null
+    - name: CREATED_AT_MONTH
+      data_type: date
+      description: >
+        Date when the order was created.
     - name: PROMO_ID
       data_type: text
       description: >
         Identifier of the promotion applied to the order.
-    - name: ESTIMATED_DELIVERY_AT
+    - name: ESTIMATED_DELIVERY_AT_UTC
       data_type: timestamp_tz
       description: >
         Estimated delivery time of the order.
@@ -234,7 +238,7 @@ models:
       tests:
         - not_null
         - positive_values
-    - name: DELIVERED_AT
+    - name: DELIVERED_AT_UTC
       data_type: timestamp_tz
       description: >
         Timestamp when the order was delivered.
