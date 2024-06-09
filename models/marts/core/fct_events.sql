@@ -6,26 +6,8 @@
 
 with 
 
-source as (
-
-    select * from {{ ref('stg_sqlserver__events') }}
-
-),
-
-renamed as (
-
-    select
-        event_id,
-        page_url,
-        event_type_id,
-        user_id,
-        product_id,
-        session_id,
-        created_at,
-        order_id,
-
-    from source
-
+events_per_user as (
+    select * from {{ ref('int_events_per_user') }}
 )
 
-select * from renamed
+select * from events_per_user
