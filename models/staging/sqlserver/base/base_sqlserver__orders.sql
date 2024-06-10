@@ -11,16 +11,20 @@ with
             end as shipping_service_name,
             shipping_cost as shipping_cost_amount_usd,
             address_id,
-            convert_timezone('UTC', created_at) as created_at_utc,
+
             case
                 when promo_id is null or promo_id = '' then 'unknown' 
                 else {{ normalize_promo_name('promo_id') }}
             end as promo_id,
-            convert_timezone('UTC', estimated_delivery_at) as estimated_delivery_at_utc,
+            TO_DATE(created_at) AS created_at_date,
+            TO_TIME(created_at) AS created_at_time_utc,
+            TO_DATE(estimated_delivery_at) AS estimated_delivery_at_date,
+            TO_TIME(estimated_delivery_at) AS estimated_delivery_at_time_utc,
+            TO_DATE(delivered_at) AS delivered_at_date,
+            TO_TIME(delivered_at) AS delivered_at_time_utc,
             order_cost as order_cost_usd,
             user_id,
             order_total as order_total_usd,
-            convert_timezone('UTC', delivered_at) as delivered_at_utc,
             tracking_id,
             case
                 when status is null or status = '' then 'unknown' 
