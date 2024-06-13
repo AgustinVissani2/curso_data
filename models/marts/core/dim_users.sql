@@ -1,14 +1,16 @@
-{{ config(
+{{
+  config(
     materialized='table'
-    ) 
+  )
 }}
 
-WITH dim_users AS (
-    SELECT  DISTINCT *
-    FROM {{ ref('stg_sqlserver__users') }}
+WITH users_snapshot AS 
+(
+    SELECT * 
+    FROM {{ ref('users_snapshot') }}
 )
 
-SELECT
+    select     
     user_id,
     first_name,
     last_name,
@@ -20,4 +22,5 @@ SELECT
     updated_at_date,
     updated_at_time_utc,
     _fivetran_synced_utc
-FROM dim_users
+    from users_snapshot
+    where dbt_valid_to is null

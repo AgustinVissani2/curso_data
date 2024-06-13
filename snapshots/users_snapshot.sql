@@ -4,12 +4,53 @@
     config(
       target_schema='snapshots',
       unique_key='user_id',
-      strategy='_fivetran_synced_utc',
-      check_cols=['quantity'],
-      invalidate_hard_deletes=True,
+      strategy='timestamp',
+      updated_at='_fivetran_synced_utc'
     )
 }}
 
-select * from {{ source('_sqlserver_sources', 'users') }}
+
+
+WITH distinct_stg_users AS
+(
+    SELECT DISTINCT(user_id)
+    FROM {{ ref('stg_sqlserver__events') }}
+),
+
+distinct_stg_events AS 
+(
+    SELECT DISTINCT(user_id)
+    FROM {{ ref('stg_sqlserver__events') }}
+),
+
+distinct_stg_orders AS 
+(
+    SELECT DISTINCT(user_id)
+    FROM {{ ref('stg_sqlserver__orders') }}
+),
+
+union_all_with_duplicates AS 
+(
+    SELECT *
+    FROM distinct_stg_users
+    UNION ALL
+    SELECT *
+    FROM distinct_stg_events
+    UNION ALL
+    SELECT *
+    FROM distinct_stg_orders
+),
+
+removing_duplicates AS 
+(
+    SELECT DISTINCT(user_id)
+    FROM union_all_with_duplicates
+)
+
+SELECT *
+FROM removing_duplicates
+FULL JOIN
+{{ ref('stg_sqlserver__users') }} AS users
+USING (user_id)
 
 {% endsnapshot %}
