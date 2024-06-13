@@ -1,19 +1,19 @@
-{% docs  %}
-	
-One of the following values: 
+{% docs %}
+  
+One of the following values:
 
 | COLUMN NAME                  | DESCRIPTION                                                       |
 |------------------------------|-------------------------------------------------------------------|
-| ADDRESS_ID                   | Identifier of the address where the order is delivered.           |
-| ZIPCODE                      | The postal code of the address.                                   |
-| COUNTRY                      | The country of the address.                                       |
-| ADDRESS                      | The full address.                                                 |
-| STATE                        | The state or region of the address.                               |
-| _FIVETRAN_DELETED            | Indicates if the record was marked as deleted by Fivetran.        |
+| ADDRESS_ID                   | Unique identifier for each address record.                         |
+| ZIPCODE                      | Postal code associated with the address.                           |
+| COUNTRY                      | Country of the address.                                           |
+| ADDRESS                      | Full address including street name and number.                     |
+| STATE                        | State of the address.                                             |
+| _FIVETRAN_DELETED            | Indicator if the record has been marked as deleted by Fivetran.   |
 | _FIVETRAN_SYNCED_UTC         | The timestamp when Fivetran synchronized the data in UTC time zone.|
 | EVENT_ID                     | Unique identifier for each event.                                 |
 | PAGE_URL                     | URL of the page where the event occurred.                         |
-| EVENT_TYPE                   | Type of the event (e.g., checkout, view).                         |
+| EVENT_TYPE                   | Type of the event name (e.g., checkout, view).                   |
 | USER_ID                      | Identifier of the user who triggered the event.                   |
 | PRODUCT_ID                   | Identifier of the product related to the event.                   |
 | SESSION_ID                   | Identifier of the session in which the event occurred.            |
@@ -55,6 +55,5 @@ One of the following values:
 | NUMBER_WEEK_DAY              | The numeric representation of the day of the week.                |
 | WEEK_DAY                     | The name of the day of the week.                                  |
 | QUARTER                      | The quarter of the year.                                          |
-
 
 {% enddocs %}
