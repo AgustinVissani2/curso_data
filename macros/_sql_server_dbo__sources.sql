@@ -41,3 +41,31 @@
         include_schema=True
         )
 }}
+
+{{
+    codegen.generate_source(
+        schema_name = 'DBT',
+        database_name = 'ALUMNO4_DEV_GOLD_DB',
+        table_names = ['dm_marketing' ],
+        generate_columns = True,
+        include_descriptions=True,
+        include_data_types=True,
+        name='_dbt_models_marketing',
+        include_database=True,
+        include_schema=True
+        )
+}}
+
+{{
+    codegen.generate_source(
+        schema_name = 'DBT',
+        database_name = 'ALUMNO4_DEV_GOLD_DB',
+        table_names = ['dm_product' ],
+        generate_columns = True,
+        include_descriptions=True,
+        include_data_types=True,
+        name='_dbt_models_product',
+        include_database=True,
+        include_schema=True
+        )
+}}

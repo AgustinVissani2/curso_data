@@ -1,0 +1,112 @@
+version: 2
+
+sources:
+  - name: _dbt_models_marketing
+    description: >
+      Database source for marketing data models.
+    database: alumno4_dev_gold_db
+    schema: dbt
+    tables:
+      - name: dm_marketing
+        description: >
+          Marketing data aggregated at the user level.
+        columns:
+          - name: user_id
+            data_type: varchar
+            description: >
+              Unique identifier for each user.
+          - name: first_name
+            data_type: varchar
+            description: >
+              First name of the user.
+          - name: last_name
+            data_type: varchar
+            description: >
+              Last name of the user.
+          - name: email
+            data_type: varchar
+            description: >
+              Email address of the user.
+          - name: phone_number
+            data_type: varchar
+            description: >
+              Phone number of the user.
+          - name: created_at_date
+            data_type: date
+            description: >
+              Date when the user record was created.
+            tests:
+              - not_null
+          - name: created_at_time_utc
+            data_type: time
+            description: >
+              Time (UTC) when the user record was created.
+            tests:
+              - not_null
+          - name: updated_at_date
+            data_type: date
+            description: >
+              Date when the user record was last updated.
+            tests:
+              - not_null
+          - name: updated_at_time_utc
+            data_type: time
+            description: >
+              Time (UTC) when the user record was last updated.
+            tests:
+              - not_null
+          - name: address
+            data_type: varchar
+            description: >
+              Address of the user.
+          - name: zipcode
+            data_type: number
+            description: >
+              ZIP code of the user's address.
+            tests:
+              - positive_values
+          - name: state
+            data_type: varchar
+            description: >
+              State or province of the user's address.
+          - name: country
+            data_type: varchar
+            description: >
+              Country of the user's address.
+          - name: total_number_orders
+            data_type: number
+            description: >
+              Total number of orders placed by the user.
+            tests:
+              - not_null
+              - positive_values
+          - name: total_order_cost_usd
+            data_type: float
+            description: >
+              Total cost of all orders placed by the user in USD.
+            tests:
+              - positive_values
+          - name: total_shipping_cost_usd
+            data_type: float
+            description: >
+              Total shipping cost incurred by the user in USD.
+            tests:
+              - positive_values
+          - name: total_discount_usd
+            data_type: number
+            description: >
+              Total discount amount applied to the user's orders in USD.
+            tests:
+              - positive_values
+          - name: total_different_product
+            data_type: number
+            description: >
+              Total number of different products purchased by the user.
+            tests:
+              - positive_values
+          - name: total_quantity_product
+            data_type: number
+            description: >
+              Total quantity of products purchased by the user.
+            tests:
+              - positive_values
