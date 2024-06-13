@@ -1,5 +1,15 @@
-with
-source as (select * from {{ ref("base_sqlserver__orders") }}),
+{{
+  config(
+    materialized='incremental',
+    unique_key='order_id',
+    on_schema_change='append_new_columns'
+  )
+}}
+
+with source as (
+    select * 
+    from {{ ref("base_sqlserver__orders") }}
+),
 
 src_sqlserver as (
     select
@@ -25,6 +35,9 @@ src_sqlserver as (
         _fivetran_synced_utc
     from source
     where _fivetran_deleted is null
+    {% if is_incremental() %}
+      and _fivetran_synced_utc > (select max(_fivetran_synced_utc) from {{ this }})
+    {% endif %}
 )
 
 select * from src_sqlserver
