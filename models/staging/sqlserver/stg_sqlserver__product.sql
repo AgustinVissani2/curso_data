@@ -4,7 +4,7 @@ with
     ),
     src_sqlserver as (
         select
-            product_id,
+            {{ dbt_utils.generate_surrogate_key(['product_id']) }} AS product_id,
             name as product_name,
             price as price_usd,
             inventory,
