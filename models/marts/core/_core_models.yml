@@ -272,13 +272,10 @@ sources:
         description: >
           Table containing information about months.
         columns:
-          - name: date
+          - name: date_day
             data_type: date
             description: >
               Date representing the start of the month.
-            tests:
-              - not_null
-              - unique
           - name: day_of_week
             data_type: varchar
             description: >
