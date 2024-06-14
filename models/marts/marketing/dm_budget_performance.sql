@@ -23,10 +23,12 @@ budget_details AS (
         SUM(o.quantity) AS quantity_sold_actual,
         (b.quantity_sold_expected - SUM(o.quantity)) AS quantity_remaining,
         SUM(o.order_total_usd) AS total_sales_usd,
-        SUM(o.order_total_usd) - (b.quantity_sold_expected * p.price_usd) AS variance_usd
+        SUM(o.order_total_usd) - (b.quantity_sold_expected * p.price_usd) AS earnings_over_estimates
     FROM budgets b
     LEFT JOIN products p ON b.product_id = p.product_id
-    LEFT JOIN orders o ON b.product_id = o.product_id
+    LEFT JOIN orders o ON b.product_id = o.product_id 
+            AND MONTH(b.month) = MONTH(o.created_at_date)
+            AND YEAR(b.month) = YEAR(o.created_at_date)
     GROUP BY all
 )
 

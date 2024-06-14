@@ -3,7 +3,7 @@ with
     src_sqlserver as (
         select
             order_id,
-            product_id,
+            {{ dbt_utils.generate_surrogate_key(['product_id']) }} AS product_id,
             quantity,
             _fivetran_deleted,
             convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc

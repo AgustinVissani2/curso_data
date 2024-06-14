@@ -27,7 +27,7 @@ models:
           The quantity of the product reported in the respective month.
         tests:
           - not_null
-      - name: DATE
+      - name: month
         data_type: date
         description: >
           The month for which the budget data is reported.
