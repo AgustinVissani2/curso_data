@@ -110,3 +110,46 @@ sources:
               Total quantity of products purchased by the user.
             tests:
               - positive_values
+
+      - name: dm_budget_performance
+        description: >
+          Aggregated performance data for budget and product sales.
+        columns:
+          - name: budget_id
+            data_type: varchar
+            description: >
+              Identifier for the budget associated with the product sales.
+            tests: 
+              - unique
+          - name: product_id
+            data_type: varchar
+            description: >
+              Identifier for the product sold.
+          - name: product_name
+            data_type: varchar
+            description: >
+              Name of the product.
+          - name: price_usd
+            data_type: float
+            description: >
+              Price of the product in USD.
+          - name: quantity_sold_expected
+            data_type: number
+            description: >
+              Expected quantity of the product to be sold.
+          - name: quantity_sold_actual
+            data_type: number
+            description: >
+              Actual quantity of the product sold.
+          - name: quantity_remaining
+            data_type: number
+            description: >
+              Remaining quantity of the product after sales.
+          - name: total_sales_usd
+            data_type: float
+            description: >
+              Total sales amount generated from the product in USD.
+          - name: earnings_over_estimates
+            data_type: float
+            description: >
+              Difference between actual earnings and estimated earnings in USD.
