@@ -46,7 +46,7 @@
     codegen.generate_source(
         schema_name = 'DBT',
         database_name = 'ALUMNO4_DEV_GOLD_DB',
-        table_names = ['dm_marketing' ],
+        table_names = ['dm_marketing' , 'dm_budget_performance' ],
         generate_columns = True,
         include_descriptions=True,
         include_data_types=True,
