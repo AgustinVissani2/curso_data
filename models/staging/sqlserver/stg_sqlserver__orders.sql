@@ -1,3 +1,4 @@
+
 {{
   config(
     materialized='incremental',
@@ -35,9 +36,11 @@ src_sqlserver as (
         _fivetran_deleted,
         _fivetran_synced_utc
     from source
+
     {% if is_incremental() %}
       where  _fivetran_synced_utc > (select max(_fivetran_synced_utc) from {{ this }})
     {% endif %}
+
 )
 
 select * from src_sqlserver
