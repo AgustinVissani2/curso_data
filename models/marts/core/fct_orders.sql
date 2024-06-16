@@ -32,6 +32,7 @@ join_order_Ordersitems as (
         o.estimated_delivery_at_time_utc,
         o.delivered_at_date,
         o.delivered_at_time_utc,
+        o._fivetran_synced_utc
     from source_orders as o
     inner join source_order_items as i
         on o.order_id = i.order_id
