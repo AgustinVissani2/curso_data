@@ -1,13 +1,3 @@
-
-{{
-  config(
-    materialized='incremental',
-    unique_key='order_id',
-    on_schema_change='fail'
-  )
-}}
-
-
 with source as (
     select * 
     from {{ ref("base_sqlserver__orders") }}
@@ -36,11 +26,6 @@ src_sqlserver as (
         _fivetran_deleted,
         _fivetran_synced_utc
     from source
-
-    {% if is_incremental() %}
-      where  _fivetran_synced_utc > (select max(_fivetran_synced_utc) from {{ this }})
-    {% endif %}
-
 )
 
 select * from src_sqlserver
