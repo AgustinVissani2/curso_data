@@ -168,6 +168,10 @@ sources:
           - name: delivered_at_time_utc
             data_type: time
             description: "Actual delivery time of the order in UTC"
+          - name: _fivetran_synced_utc
+            data_type: timestamp_tz
+            description: >
+              Timestamp when the address data was synchronized by Fivetran in UTC.
 
       - name: fct_events
         description: "Fact table containing user event details"
