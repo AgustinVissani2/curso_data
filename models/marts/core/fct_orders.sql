@@ -1,7 +1,7 @@
 {{
   config(
-     materialized='incremental',
-     unique_key='order_id',
+    materialized='incremental',
+    unique_key='order_id',
     on_schema_change='fail'
   )
 }}
@@ -50,9 +50,6 @@ join_order_Ordersitems as (
         on o.order_id = i.order_id
     left join max_sync_time as m
         on 1=1
-    -- {% if is_incremental() %}
-    --   where  o._fivetran_synced_utc > (select max(_fivetran_synced_utc) from {{ this }})
-    -- {% endif %}
     {% if is_incremental() %}
       where o._fivetran_synced_utc > m.max_synced
     {% endif %}
