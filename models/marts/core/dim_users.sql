@@ -4,10 +4,10 @@
   )
 }}
 
-WITH users_snapshot AS 
+WITH stg_users AS 
 (
     SELECT * 
-    FROM {{ ref('users_snapshot') }}
+    FROM {{ ref('stg_sqlserver__users') }}
 )
 
     select     
@@ -22,5 +22,4 @@ WITH users_snapshot AS
     updated_at_date,
     updated_at_time_utc,
     _fivetran_synced_utc
-    from users_snapshot
-    where dbt_valid_to is null
+    from stg_users

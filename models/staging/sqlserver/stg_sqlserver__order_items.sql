@@ -7,7 +7,7 @@
 }}
 
 with
-    source as (select * from {{ source("_sqlserver_sources", "order_items") }}),
+    source as (select * from {{ ref("orders_items_snapshot") }}),
     src_sqlserver as (
         select
             order_id,

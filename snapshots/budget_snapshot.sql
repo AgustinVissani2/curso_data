@@ -3,13 +3,13 @@
 {{
     config(
       target_schema='snapshots',
-      unique_key='budget_id',
+      unique_key='_row',
       strategy='timestamp',
-      updated_at='_fivetran_synced_utc',
+      updated_at='_fivetran_synced'
     )
 }}
 
-select *  FROM {{ ref('stg_google_sheets__budget') }}
+select * from {{ source('_google_sheets__sources', 'budget') }}
 
 
 {% endsnapshot %}
