@@ -18,6 +18,7 @@ src_sqlserver as (
         order_id,
         shipping_service_name,
         {{ dbt_utils.generate_surrogate_key(['shipping_service_name']) }} AS shipping_service_id,
+        {{ dbt_utils.generate_surrogate_key(['sellers_id']) }} AS sellers_id,
         shipping_cost_amount_usd,
         {{ dbt_utils.generate_surrogate_key(['address_id'])}} AS address_id,
         {{ dbt_utils.generate_surrogate_key(['promo_id']) }} AS promo_id,
