@@ -14,6 +14,7 @@ product_event_user AS (
         e.session_id,
         u.user_id,
         u.first_name,
+        u.last_name,
         u.email,
         MIN(e.created_at) AS first_event_time_utc,
         MAX(e.created_at) AS last_event_time_utc,

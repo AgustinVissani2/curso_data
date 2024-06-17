@@ -1,15 +1,15 @@
-{% snapshot budget_snapshot %}
+{% snapshot products_snapshot %}
 
 {{
     config(
       target_schema='snapshots',
-      unique_key='budget_id',
+      unique_key='product_id',
       strategy='timestamp',
       updated_at='_fivetran_synced_utc',
-    )
+        )
 }}
 
-select *  FROM {{ ref('stg_google_sheets__budget') }}
+select *  FROM {{ ref('stg_sqlserver__product') }}
 
 
 {% endsnapshot %}

@@ -25,6 +25,10 @@ sources:
             data_type: varchar
             description: >
               First name of the user associated with the session.
+          - name: last_name
+            data_type: varchar
+            description: >
+              Last name of the user associated with the session.
           - name: email
             data_type: varchar
             description: >
