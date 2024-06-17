@@ -14,7 +14,7 @@ orders AS (
 ),
 
 budget_details AS (
-    SELECT
+    SELECT 
         b.budget_id,
         b.product_id,
         p.product_name,
@@ -23,8 +23,8 @@ budget_details AS (
         b.quantity_sold_expected,
         COALESCE(SUM(o.quantity), 0) AS quantity_sold_actual,
         (b.quantity_sold_expected - COALESCE(SUM(o.quantity), 0)) AS quantity_remaining,
-        COALESCE(SUM(o.order_total_usd - SHIPPING_COST_AMOUNT_USD), 0) AS total_sales_usd,
-        COALESCE(SUM(o.order_total_usd - SHIPPING_COST_AMOUNT_USD), 0) - (b.quantity_sold_expected * p.price_usd) AS earnings_over_estimates
+        quantity_sold_actual *  p.price_usd AS total_sales_usd,
+        total_sales_usd - (b.quantity_sold_expected * p.price_usd) AS earnings_over_estimates
     FROM budgets b
     LEFT JOIN products p ON b.product_id = p.product_id
     LEFT JOIN orders o ON b.product_id = o.product_id 

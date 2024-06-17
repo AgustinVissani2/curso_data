@@ -4,11 +4,12 @@
     config(
       target_schema='snapshots',
       unique_key='_row',
-      strategy='check',
-      check_cols=['quantity'],
-        )
+      strategy='timestamp',
+      updated_at='_fivetran_synced'
+    )
 }}
 
 select * from {{ source('_google_sheets__sources', 'budget') }}
+
 
 {% endsnapshot %}
