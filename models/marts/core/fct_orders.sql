@@ -27,7 +27,7 @@ max_sync_time as (
 
 join_order_Ordersitems as (
     select
-        i.order_id,
+        o.order_id,
         o.user_id,
         o.seller_id,
         o.shipping_service_id,
@@ -48,7 +48,7 @@ join_order_Ordersitems as (
         o._fivetran_synced_utc,
         o.dbt_valid_to
     from source_orders as o
-    inner join source_order_items as i
+    left join source_order_items as i
         on o.order_id = i.order_id
     left join max_sync_time as m
         on 1=1

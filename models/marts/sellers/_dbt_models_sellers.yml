@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: _dbt_models_sellers
+  - name: dm_sellers
     description: >
       Database source for seller data models.
     database: alumno4_dev_gold_db
@@ -57,7 +57,7 @@ sources:
               Total number of orders for the seller.
             # tests:
             #   - not_null
-          - name: total_sales_sellers
+          - name: total_sales_seller_usd
             description: >
               Total sales amount for the seller.
             # tests:
