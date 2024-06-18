@@ -34,7 +34,8 @@ src_sqlserver as (
         status,
         {{ dbt_utils.generate_surrogate_key(['status'])}} AS status_id,
         _fivetran_deleted,
-        _fivetran_synced_utc
+        _fivetran_synced_utc,
+        dbt_valid_to
     from snap_orders
 
     {% if is_incremental() %}
@@ -44,3 +45,4 @@ src_sqlserver as (
 )
 
 select * from src_sqlserver
+WHERE dbt_valid_to IS NULL

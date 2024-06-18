@@ -44,7 +44,8 @@ join_order_Ordersitems as (
         o.estimated_delivery_at_time_utc,
         o.delivered_at_date,
         o.delivered_at_time_utc,
-        o._fivetran_synced_utc
+        o._fivetran_synced_utc,
+        o.dbt_valid_to
     from source_orders as o
     inner join source_order_items as i
         on o.order_id = i.order_id
@@ -57,4 +58,5 @@ join_order_Ordersitems as (
 
 
 select * from join_order_Ordersitems
+WHERE dbt_valid_to IS NULL
 

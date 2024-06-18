@@ -149,6 +149,12 @@ models:
         data_type: timestamp_tz
         description: >
           The timestamp when Fivetran synchronized the data in UTC time zone.
+      - name: dbt_valid_to
+        data_type: timestamp_tz
+        description: >
+          This field represents the timestamp_tz until which the record was valid. It is used in the context of snapshots to indicate the end of the validity period for a record before it was modified or deleted. If the record is still valid, this field will typically be null.
+
+          
 
   # ORDERS
   - name: stg_sqlserver__orders
@@ -267,6 +273,11 @@ models:
         data_type: timestamp_tz
         description: >
           The timestamp when the data was synchronized by Fivetran, converted to UTC.
+      - name: dbt_valid_to
+        data_type: timestamp_tz
+        description: >
+          This field represents the timestamp_tz until which the record was valid. It is used in the context of snapshots to indicate the end of the validity period for a record before it was modified or deleted. If the record is still valid, this field will typically be null.
+
 
   # PROMOS
   - name: stg_sqlserver__promos
