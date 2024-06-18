@@ -97,6 +97,8 @@ sources:
             tests:
               - unique
               - not_null
+          - name: SELLER_ID
+            description: "Unique identifier for the seller."
           - name: SHIPPING_SERVICE
             description: "Shipping service used for the order."
           - name: SHIPPING_COST
@@ -205,7 +207,7 @@ sources:
       - name: sellers
         description: "Table containing the information of a seller"
         columns:
-          - name: sellers_id
+          - name: seller_id
             data_type: varchar
             description: "Seller's unique identifier"
             tests:

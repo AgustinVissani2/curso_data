@@ -29,6 +29,7 @@ join_order_Ordersitems as (
     select
         i.order_id,
         o.user_id,
+        o.seller_id,
         o.shipping_service_id,
         o.shipping_cost_amount_usd,
         o.address_id,

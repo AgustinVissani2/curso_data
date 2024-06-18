@@ -13,6 +13,7 @@ with source as (
 src_sqlserver as (
     select
         order_id,
+        seller_id,
         shipping_cost as shipping_cost_amount_usd,
         address_id,
         case

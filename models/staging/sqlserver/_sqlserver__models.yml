@@ -153,8 +153,7 @@ models:
         data_type: timestamp_tz
         description: >
           This field represents the timestamp_tz until which the record was valid. It is used in the context of snapshots to indicate the end of the validity period for a record before it was modified or deleted. If the record is still valid, this field will typically be null.
-
-          
+   
 
   # ORDERS
   - name: stg_sqlserver__orders
@@ -173,6 +172,10 @@ models:
         tests:
         - not_null
         - unique 
+      - name: SELLER_ID
+        data_type: text
+        description: >
+          Unique identifier for each seller.
       - name: SHIPPING_SERVICE_ID
         data_type: text
         description: >
@@ -448,3 +451,47 @@ models:
         description: >
           The timestamp when Fivetran synchronized the data in UTC time zone.
  
+  #SELLERS
+  - name: stg_sqlserver__sellers
+    description: "Table containing the information of a seller"
+    columns:
+    - name: seller_id
+      data_type: varchar
+      description: "Seller's unique identifier"
+      tests:
+        - unique
+        - not_null
+    - name: first_name
+      data_type: varchar
+      description: "Seller name"
+      tests:
+        - not_null
+    - name: last_name
+      data_type: varchar
+      description: "Seller's last name"
+      tests:
+        - not_null
+    - name: salary
+      data_type: number
+      description: "Salesperson salary value"
+      tests:
+        - not_null
+        - positive_values
+    - name: commission
+      data_type: number
+      description: "Value of the commission percentage that the seller takes for each sale is an integer type"
+      tests:
+        - not_null
+        - positive_values
+    - name: address_id
+      data_type: varchar
+      description: "Seller address identifier"
+      tests:
+        - not_null
+    - name: contract_start_date
+      data_type: timestamp_tz
+      description: "Seller's contract start date"
+    - name: contract_end_date
+      data_type: timestamp_tz
+      description: "End date of the seller's contract"
+    - name: _fivetran_synced_utc

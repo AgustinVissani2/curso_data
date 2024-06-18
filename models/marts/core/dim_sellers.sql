@@ -10,7 +10,7 @@ WITH stg_sellers AS (
 )
 
 SELECT 
-    sellers_id
+    seller_id
     , first_name
     , last_name
     , salary
@@ -20,6 +20,5 @@ SELECT
     , contract_start_date_at_time_utc
     , contract_end_date_at_date
     , contract_end_date_at_time_utc
-    , date_load 
+    , _fivetran_synced_utc 
 FROM stg_sellers
-WHERE dbt_valid_to IS NULL

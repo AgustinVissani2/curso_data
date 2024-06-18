@@ -9,6 +9,8 @@ models:
         tests:
           - not_null
           - unique
+      - name: seller_id
+        description: "Unique identifier for the seller."
       - name: shipping_cost_amount_usd
         description: "Shipping cost in USD."
         tests:
