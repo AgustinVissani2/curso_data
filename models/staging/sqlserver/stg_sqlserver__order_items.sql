@@ -14,7 +14,8 @@ with
             {{ dbt_utils.generate_surrogate_key(['product_id']) }} AS product_id,
             quantity,
             _fivetran_deleted,
-            convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc
+            convert_timezone('UTC', _fivetran_synced) as _fivetran_synced_utc,
+            dbt_valid_to
         from source
     {% if is_incremental() %}
       where  _fivetran_synced_utc > (select max(_fivetran_synced_utc) from {{ this }})
@@ -23,3 +24,4 @@ with
 
 select *
 from src_sqlserver
+WHERE dbt_valid_to IS NULL

@@ -26,13 +26,13 @@ events AS (
         e.product_id,
         e.created_at,
         e.order_id,
+        e._fivetran_synced_utc,
         eu.checkout_amount,
         eu.package_shipped_amount,
         eu.add_to_cart_amount,
         eu.page_view_amount
     FROM stg_events e
     inner join events_count_per_user eu ON e.session_id = eu.session_id
-    GROUP BY all
 )
 
 SELECT * FROM events

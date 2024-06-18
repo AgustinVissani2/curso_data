@@ -1,11 +1,6 @@
 version: 2
 
-sources:
-  - name: _core_models
-    description: "Core database for the project"
-    database: alumno4_dev_gold_db
-    schema: core
-    tables:
+models:
       - name: dim_products
         description: "Dimension table containing product details"
         columns:
@@ -176,6 +171,10 @@ sources:
             data_type: timestamp_tz
             description: >
               Timestamp when the address data was synchronized by Fivetran in UTC.
+          - name: dbt_valid_to
+            data_type: timestamp_tz
+            description: >
+              This field represents the timestamp_tz until which the record was valid. It is used in the context of snapshots to indicate the end of the validity period for a record before it was modified or deleted. If the record is still valid, this field will typically be null.
 
       - name: fct_events
         description: "Fact table containing user event details"
@@ -256,7 +255,6 @@ sources:
               data_type: timestamp_tz
               description: >
                 Timestamp when the address data was synchronized by Fivetran in UTC.
-
 
       - name: dim_event_types
         description: >
