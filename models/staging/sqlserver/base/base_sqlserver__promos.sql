@@ -1,6 +1,8 @@
-with
-    source as (select * from {{ source("_sqlserver_sources", "promos") }}),
-    src_sqlserver as (
+with source as (
+    (select * from {{ source("_sqlserver_sources", "promos") }})
+),
+
+src_sqlserver as (
         select
             case
                 when promo_id is null or promo_id = '' then 'unknown' else {{ normalize_promo_name('promo_id') }}
