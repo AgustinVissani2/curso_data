@@ -182,6 +182,10 @@ models:
           - name: session_id
             data_type: varchar
             description: "Unique identifier for each session"
+          - name: seller_id
+            data_type: text
+            description: >
+              Unique identifier for each seller.
           - name: user_id
             data_type: varchar
             description: "Identifier for the user"

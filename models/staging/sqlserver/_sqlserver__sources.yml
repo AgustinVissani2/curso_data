@@ -97,6 +97,8 @@ sources:
             tests:
               - unique
               - not_null
+          - name: SELLER_ID
+            description: "Unique identifier for the seller."
           - name: SHIPPING_SERVICE
             description: "Shipping service used for the order."
           - name: SHIPPING_COST
@@ -201,3 +203,49 @@ sources:
             description: "Indicator if the record was deleted by Fivetran."
           - name: _FIVETRAN_SYNCED
             description: "Timestamp when the record was last synced by Fivetran."
+
+      - name: sellers
+        description: "Table containing the information of a seller"
+        columns:
+          - name: seller_id
+            data_type: varchar
+            description: "Seller's unique identifier"
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            data_type: varchar
+            description: "Seller name"
+            tests:
+              - not_null
+          - name: last_name
+            data_type: varchar
+            description: "Seller's last name"
+            tests:
+              - not_null
+          - name: salary
+            data_type: number
+            description: "Salesperson salary value"
+            tests:
+              - not_null
+              - positive_values
+          - name: commission
+            data_type: number
+            description: "Value of the commission percentage that the seller takes for each sale is an integer type"
+            tests:
+              - not_null
+              - positive_values
+          - name: address_id
+            data_type: varchar
+            description: "Seller address identifier"
+            tests:
+              - not_null
+          - name: contract_start_date
+            data_type: timestamp_tz
+            description: "Seller's contract start date"
+            tests:
+              - not_null
+          - name: contract_end_date
+            data_type: timestamp_tz
+            description: "End date of the seller's contract"
+          - name: _fivetran_synced
