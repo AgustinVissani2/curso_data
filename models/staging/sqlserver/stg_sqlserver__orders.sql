@@ -8,9 +8,9 @@
 }}
 
 
-with snap_orders as (
+with base_orders as (
     select * 
-    from {{ ref("orders_snapshot") }}
+    from {{ ref("base_sqlserver__orders") }}
 ),
 
 src_sqlserver as (
@@ -35,9 +35,8 @@ src_sqlserver as (
         status,
         {{ dbt_utils.generate_surrogate_key(['status'])}} AS status_id,
         _fivetran_deleted,
-        _fivetran_synced_utc,
-        dbt_valid_to
-    from snap_orders
+        _fivetran_synced_utc
+    from base_orders
 
     {% if is_incremental() %}
       where  _fivetran_synced_utc > (select max(_fivetran_synced_utc) from {{ this }})
@@ -46,4 +45,3 @@ src_sqlserver as (
 )
 
 select * from src_sqlserver
-WHERE dbt_valid_to IS NULL
