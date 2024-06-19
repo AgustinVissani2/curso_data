@@ -1,6 +1,7 @@
 with snap_users as (
     select * 
-    from {{ ref("users_snapshot") }}
+    from {{ source("_sqlserver_sources", "users")  }}
+    
 ),
 
 src_sqlserver AS (
@@ -27,12 +28,10 @@ src_sqlserver AS (
             ) = true,
             false
         ) AS is_valid_email_address,
-        CONVERT_TIMEZONE('UTC', _fivetran_synced) AS _fivetran_synced_utc,
-        dbt_valid_to
+        CONVERT_TIMEZONE('UTC', _fivetran_synced) AS _fivetran_synced_utc
     FROM snap_users
 
 )
 
 SELECT *
 FROM src_sqlserver
-WHERE dbt_valid_to IS NULL

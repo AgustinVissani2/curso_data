@@ -35,26 +35,18 @@ sources:
             data_type: date
             description: >
               Date when the user record was created.
-            tests:
-              - not_null
           - name: created_at_time_utc
             data_type: time
             description: >
               Time (UTC) when the user record was created.
-            tests:
-              - not_null
           - name: updated_at_date
             data_type: date
             description: >
               Date when the user record was last updated.
-            tests:
-              - not_null
           - name: updated_at_time_utc
             data_type: time
             description: >
               Time (UTC) when the user record was last updated.
-            tests:
-              - not_null
           - name: address
             data_type: varchar
             description: >

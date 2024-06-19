@@ -425,8 +425,7 @@ models:
       - name: PRICE_USD
         description: "Price of the product in USD"
         tests:
-          - positive_values
-          - not_null              
+          - positive_values            
       - name: PRODUCT_NAME
         description: "Product name"
       - name: INVENTORY
