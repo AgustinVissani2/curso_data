@@ -1,5 +1,7 @@
-with
-source as (select * from {{ source("_sqlserver_sources", "sellers") }}),
+with snap_sellers as (
+    select * 
+    from {{ ref("sellers_snapshot") }}
+),
 
 src_sellers as (
     select
@@ -13,8 +15,9 @@ src_sellers as (
         TO_TIME(contract_start_date) AS contract_start_date_at_time_utc,
         TO_DATE(contract_end_date) AS contract_end_date_at_date,
         TO_TIME(contract_end_date) AS contract_end_date_at_time_utc,
-        convert_timezone('UTC', _fivetran_synced) AS _fivetran_synced_utc
-     from source
+        convert_timezone('UTC', _fivetran_synced) AS _fivetran_synced_utc,
+        dbt_valid_to
+     from snap_sellers
 ),
 
 renamed_casted AS (
@@ -23,3 +26,4 @@ renamed_casted AS (
 )
 
 SELECT * FROM renamed_casted
+WHERE dbt_valid_to IS NULL

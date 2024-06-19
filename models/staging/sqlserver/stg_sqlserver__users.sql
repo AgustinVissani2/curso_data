@@ -1,6 +1,7 @@
-WITH source AS (
-    SELECT *
-    FROM {{ source("_sqlserver_sources", "users") }}
+with snap_users as (
+    select * 
+    from {{ source("_sqlserver_sources", "users")  }}
+    
 ),
 
 src_sqlserver AS (
@@ -28,8 +29,7 @@ src_sqlserver AS (
             false
         ) AS is_valid_email_address,
         CONVERT_TIMEZONE('UTC', _fivetran_synced) AS _fivetran_synced_utc
-    FROM source
-    WHERE _fivetran_deleted IS null
+    FROM snap_users
 
 )
 

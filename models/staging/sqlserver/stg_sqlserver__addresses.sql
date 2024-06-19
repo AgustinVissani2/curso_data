@@ -23,13 +23,5 @@ src_sqlserver as (
         null::timestamp as _fivetran_synced_utc
 )
 
-    select
-            address_id,
-            zipcode,
-            country,
-            address,
-            state,
-            _fivetran_deleted,
-            _fivetran_synced_utc
-
-    from src_sqlserver
+select *
+from src_sqlserver
